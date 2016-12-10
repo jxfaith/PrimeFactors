@@ -2,11 +2,25 @@
 #include <vector>
 #include <string>
 
+bool isPrime(int number) {
+	for (int i = 2; i <= number; i++) {
+		if (number%i==0 && number != i)
+			return false;
+	}
+	return true;
+}
+
 std::vector<int> PrimeFactors(int number) {
 	std::vector<int> v;
-	for (int i = 1; i <= number; i++) {
-		if (number%i == 0)
+	int i = 2;
+	while (number != 1) {
+		if (number%i == 0 && isPrime(i)) {
 			v.push_back(i);
+			number /= i;
+			i = 2;
+		} else { 
+			i++;
+		}
 	}
 	return v;
 }
